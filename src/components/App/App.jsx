@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import { useDebounce } from 'use-debounce';
-// import ContactForm from '../ContactForm/ContactForm';
+import ContactForm from '../ContactForm/ContactForm';
 import ContactList from '../ContactList/ContactList';
 import SearchBox from '../SearchBox/SearchBox';
 import css from './App.module.css';
@@ -23,11 +23,15 @@ function App() {
     );
   }, [debouncedContacts, contacts]);
 
+  const addContact = (newContact) => {
+    setContacts((prevContacts) => [...prevContacts, newContact]);
+  };
+
   return (
     <>
       <div className={css.container}>
         <h1>Phonebook</h1>
-        {/* <ContactForm /> */}
+        <ContactForm onSubmit={addContact} />
         <SearchBox value={inputValue} onChange={setInputValue} />
         <ContactList listIteams={filteredContacts} />
       </div>
