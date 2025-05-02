@@ -27,13 +27,19 @@ function App() {
     setContacts((prevContacts) => [...prevContacts, newContact]);
   };
 
+  const deleteContact = (id) => {
+    setContacts((prevContacts) =>
+      prevContacts.filter((contact) => contact.id !== id),
+    );
+  };
+
   return (
     <>
       <div className={css.container}>
         <h1>Phonebook</h1>
         <ContactForm onSubmit={addContact} />
         <SearchBox value={inputValue} onChange={setInputValue} />
-        <ContactList listIteams={filteredContacts} />
+        <ContactList listIteams={filteredContacts} onUpdate={deleteContact} />
       </div>
     </>
   );

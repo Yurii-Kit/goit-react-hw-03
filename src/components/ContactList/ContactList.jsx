@@ -1,7 +1,7 @@
 import Contact from '../Contact/Contact';
 import css from './ContactList.module.css';
 
-export default function ContactList({ listIteams }) {
+export default function ContactList({ listIteams, onUpdate }) {
   console.log(listIteams);
 
   return (
@@ -9,7 +9,7 @@ export default function ContactList({ listIteams }) {
       {listIteams.map((listIteam) => {
         return (
           <li className={css.listIteam} key={listIteam.id}>
-            <Contact listIteam={listIteam} />
+            <Contact listIteam={listIteam} handleDelete={onUpdate} />
           </li>
         );
       })}
