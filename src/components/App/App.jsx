@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
+import { useDebounce } from 'use-debounce';
 // import ContactForm from '../ContactForm/ContactForm';
 import ContactList from '../ContactList/ContactList';
-// import SearchBox from '../SearchBox/SearchBox';
+import SearchBox from '../SearchBox/SearchBox';
 import css from './App.module.css';
 
 function App() {
@@ -12,13 +13,23 @@ function App() {
     { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
   ]);
 
+  const [inputValue, setInputValue] = useState('');
+  const [debouncedContacts] = useDebounce(inputValue, 1000);
+
+  const filteredContacts = useMemo(() => {
+    console.log('filtering contacts...');
+    return contacts.filter((contact) =>
+      contact.name.toLowerCase().includes(debouncedContacts.toLowerCase()),
+    );
+  }, [debouncedContacts, contacts]);
+
   return (
     <>
       <div className={css.container}>
         <h1>Phonebook</h1>
-        {/* <ContactForm />
-        <SearchBox /> */}
-        <ContactList listIteams={contacts} />
+        {/* <ContactForm /> */}
+        <SearchBox value={inputValue} onChange={setInputValue} />
+        <ContactList listIteams={filteredContacts} />
       </div>
     </>
   );
