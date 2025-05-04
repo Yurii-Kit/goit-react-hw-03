@@ -29,3 +29,9 @@
   margin: 0 auto;
   margin-bottom: 1rem;
 }
+.error {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+  display: block;
+}

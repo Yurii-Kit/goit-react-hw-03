@@ -1,7 +1,7 @@
 .contactList {
   list-style: none;
   padding: 5px;
-  border: 2px solid #141414;
+  /* border: 2px solid #141414; */
   border-radius: 5px;
   display: flex;
   flex-direction: column;
